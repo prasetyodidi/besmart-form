@@ -35,8 +35,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->input('password'))
             ]);
             if($isCreated){
-                $users = User::get();
-                return view('user.index',compact('users'))->with('success','data berhasil dibuat');
+                return redirect(route('index'))->with('success','data berhasil diupdate');
             }else{
                 return back()->with('failed','data gagal dibuat');
             }
@@ -65,8 +64,7 @@ class UserController extends Controller
                     'email' => $request->input('email')
                 ]);
                 if($isUpdate){
-                    $users = User::get();
-                    return view('user.index',compact('users'))->with('success','data berhasil diupdate');
+                    return redirect(route('index'))->with('success','data berhasil diupdate');
                 }else{
                     return back()->with('failed','data gagal diupdate');
                 }
