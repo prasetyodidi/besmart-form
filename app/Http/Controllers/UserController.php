@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -31,7 +32,7 @@ class UserController extends Controller
             $isCreated = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => $request->input('password')
+                'password' => Hash::make($request->input('password'))
             ]);
             if($isCreated){
                 $users = User::get();
